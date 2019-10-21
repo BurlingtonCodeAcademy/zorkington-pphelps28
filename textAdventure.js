@@ -206,7 +206,10 @@ if (player.inventory.includes(item)){
     let i= player.inventory.indexOf(item);
     console.log(`\nyou dropped ${player.inventory[i].name}`);
     currentRoom.items.push(player.inventory[i].name.toString())
+<<<<<<< HEAD
+=======
     console.log(currentRoom.items)
+>>>>>>> ecee15b01703efe3e8cec5d8e0d7e3cda8a229e2
     player.inventory.splice(i,1);
     }
 }

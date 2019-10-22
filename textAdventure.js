@@ -71,11 +71,13 @@ class Item{
 let sword= new Item('sword','\na suprisingly sharp blade, considering where you found it')
 let holySymbol= new Item('holy symbol','a token of home; wards off evil')
 let torch= new Item('torch','\na small wooden torch.  very bright when lit')
+let rock = new Item('rock', '\na rock you picked up along the river. smooth.')
 
 let hasItem ={
     'sword':sword,
     'holy symbol':holySymbol,
     'torch': torch,
+    'rock': rock
 }
 let player = {
     inventory:[]
@@ -148,7 +150,7 @@ async function action(){
                 temple.description= 'a cold stone temple.'
     }else if (choice.includes('pick up')){
             pickup(choice.replace('pick up ',''))
-    }else if(choice ==='use torch' && cave.description==='The cave is very dark.  The growling is much louder'&& currentRoom.name===cave.name){
+    }else if(choice ==='use torch' && cave.description==='The cave is very dark.  The growling is much louder'&& currentRoom.name===cave.name && player.inventory.includes(torch)){
         console.log("light fills the room.  You see a hibernating bear")
         cave.description='a sleeping bear.  It is very cute'
     }else if (choice=== 'use holy symbol' &&currentRoom.name==='riverBridge' && player.inventory.includes(holySymbol)){
@@ -161,7 +163,7 @@ async function action(){
             console.log('You slayed a sweet little bear.  How could you.')
             cave.description = 'Here lies a dead bear. In a cave. Looks like it was sleeping. Weird.'
             woodsCave.description='a cave. It is silent'
-    }else if(choice==='use sword' && currentRoom.description!=='a clear bridge lies before you'&& player.inventory.includes(sword)){
+    }else if(choice==='use sword' && currentRoom.description==='A troll guards the\nbridge to the east;\nover it, a massive bridge.\n"NONE SHALL PASS," it screams'&& player.inventory.includes(sword)){
         console.log('\nYou run the troll through with your sword\n but the wounds close up quickly\n "HAHAHA," it says, "YOUR MORTAL WEAPONS WILL NOT WORK ON ME"\nit throws you back and resumes its previous stance')
 
     }else if(choice==='pet bear' && currentRoom.description==='a sleeping bear.  It is very cute'){
@@ -206,10 +208,6 @@ if (player.inventory.includes(item)){
     let i= player.inventory.indexOf(item);
     console.log(`\nyou dropped ${player.inventory[i].name}`);
     currentRoom.items.push(player.inventory[i].name.toString())
-<<<<<<< HEAD
-=======
-    console.log(currentRoom.items)
->>>>>>> ecee15b01703efe3e8cec5d8e0d7e3cda8a229e2
     player.inventory.splice(i,1);
     }
 }
